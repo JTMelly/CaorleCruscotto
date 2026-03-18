@@ -1,7 +1,7 @@
 # CaorleCruscotto
 ### Make XBeach models with Python.
 
-This collection of scripts attempts to mimic some of the functionality of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the `bed.dep` depth grid dimensions. Inspired by [xbeach-toolbox](https://github.com/openearth/xbeach-toolbox) and [Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repositories.
+This collection of scripts attempts to mimic some of the functionality of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the *bed.dep* depth grid dimensions. Inspired by [xbeach-toolbox](https://github.com/openearth/xbeach-toolbox) and [Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repositories.
 
 Tools should work as *Jupyter Notebooks* or in *Colabs* with limited tinkering. Blocks of code are organized into interactive chunks because we debug in production. 
 
@@ -18,10 +18,10 @@ To use the resultant files, update *params.txt* with:
 
 Also remember to set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-shore and `ny` is always alongshore).
 
-![grid plot](/images/grid.png)![bathymetry plot](/images/bathy.png)
+![grid plot](/images/grid.png)!
 
 ## Extend grid and bathymetry
-Feed `ExtendGridAndBathy.py` *.grd* and *dep* files and get back new, extended *.grd* and *.dep* files that reach an offshore target depth by applying a user-defined slope. 
+Feed `ExtendGridAndBathy.py` *.grd* and *.dep* files and get back new, extended *.grd* and *.dep* files that reach an offshore target depth by applying a user-defined slope. 
 
 Again, to use the resultant files, update *params.txt* with:
 
@@ -31,7 +31,7 @@ Again, to use the resultant files, update *params.txt* with:
 
 and set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-shore and `ny` is always alongshore).
 
-![extended grid plot](/images/extendedgrid.png)![extended bathymetry plot](/images/extendedbathy.png)
+![extended bathymetry plot](/images/extendedbathy.png)
 
 ## Make non-erodible layer
 Make a non-erodible layer file based on an *XBeach* model's *.grd* and *.dep* files. Two cases are possible:
