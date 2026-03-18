@@ -57,3 +57,14 @@ To use the output file, update *params.txt* with:
 *   `bedfricfile = manning_layer.dep`
 
 ![manning layer plot](/images/manning.png)
+
+## Make waves
+
+`MakeWaves.py` makes a single *jonswap* file based on a table of satellite altimetry observations. Observations likely come from downloaded data and should include wave height, period and direction along with timestamps. Might be useful for creating a single model based on a historical event.
+
+## Make tides
+Take a tide table and hammer it into a format that XBeach likes. Tide files may come from other tools such as [Coastsat](https://github.com/kvos/CoastSat), [PyFES](https://github.com/CNES/aviso-fes), or [pyTMD](https://github.com/pyTMD/pyTMD). Here, two cases are covered: 
+1) simple tide rises and falls evenly across the offshore boundary; 
+2) offshore boundary corners out of phase inducing longshore currents (assumes rectangular domain).
+
+![tides](/images/tides.png)
