@@ -1,7 +1,7 @@
 # CaorleCruscotto
 ### Make XBeach models with Python.
 
-This collection of scripts attempts to mimic some of the functionality of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the *bed.dep* depth grid dimensions. Inspired by [xbeach-toolbox](https://github.com/openearth/xbeach-toolbox) and [Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repositories.
+This collection of scripts attempts to mimic some of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools functionality. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the *bed.dep* depth grid dimensions. Inspired by [xbeach-toolbox](https://github.com/openearth/xbeach-toolbox) and [Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repositories.
 
 Tools should work as *Jupyter Notebooks* or in *Colabs* with limited tinkering. Blocks of code are organized into interactive chunks because we debug in production. 
 
@@ -18,7 +18,7 @@ To use the resultant files, update *params.txt* with:
 
 Also remember to set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-shore and `ny` is always alongshore).
 
-![grid plot](/images/grid.png)!
+![grid plot](/images/grid.png)
 
 ## Extend grid and bathymetry
 Feed `ExtendGridAndBathy.py` *.grd* and *.dep* files and get back new, extended *.grd* and *.dep* files that reach an offshore target depth by applying a user-defined slope. 
@@ -34,7 +34,7 @@ and set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-
 ![extended bathymetry plot](/images/extendedbathy.png)
 
 ## Make non-erodible layer
-Make a non-erodible layer file based on an *XBeach* model's *.grd* and *.dep* files. Two cases are possible:
+Make a non-erodible layer file, based on an *XBeach* model's *.grd* and *.dep* files, using `MakeNonErodible.py`. Two cases are possible:
 1.  A single erodible sediment thickness value is applied to the entire model domain.
 2.  Erodible/non-erodible areas are defined by a user-provided .geojson file and erodible areas are assigned a sediment thickness value based on user input.
 
@@ -48,3 +48,12 @@ A special case might be an erodible sediment thickness of 0 (no erodible sedimen
 *   `sedtrans     = 0`
 
 ![non-erodible layer plot](/images/nonerodible.png)
+
+## Make Manning layer
+`MakeManning.py` makes a *.dep* file containing [Manning coefficients](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) for each model grid node, shaped after an *XBeach* model's *.grd* and *.dep* files. Users must supply a .geojson file comprised of area polygons and an attribute field titled "manning" containing the number values.
+
+To use the output file, update *params.txt* with:
+*   `bedfriction = manning`
+*   `bedfricfile = manning_layer.dep`
+
+![manning layer plot](/images/manning.png)
