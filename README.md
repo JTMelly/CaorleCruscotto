@@ -18,7 +18,7 @@ To use the resultant files, update *params.txt* with:
 
 Also remember to set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-shore and `ny` is always alongshore).
 
-![wave angle plot](/images/grid.png)![wave angle plot](/images/bathy.png)
+![grid plot](/images/grid.png)![bathymetry plot](/images/bathy.png)
 
 ## Extend grid and bathymetry
 Feed `ExtendGridAndBathy.py` *.grd* and *dep* files and get back new, extended *.grd* and *.dep* files that reach an offshore target depth by applying a user-defined slope. 
@@ -31,4 +31,20 @@ Again, to use the resultant files, update *params.txt* with:
 
 and set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-shore and `ny` is always alongshore).
 
-![wave angle plot](/images/extendedgrid.png)![wave angle plot](/images/extendedbathy.png)
+![extended grid plot](/images/extendedgrid.png)![extended bathymetry plot](/images/extendedbathy.png)
+
+## Make non-erodible layer
+Make a non-erodible layer file based on an *XBeach* model's *.grd* and *.dep* files. Two cases are possible:
+1.  A single erodible sediment thickness value is applied to the entire model domain.
+2.  Erodible/non-erodible areas are defined by a user-provided .geojson file and erodible areas are assigned a sediment thickness value based on user input.
+
+To use the *ne_layer.dep* file produced, update *params.txt* with:
+*   `ne_layer     = ne_layer.dep`
+*   `struct       = 1` 
+
+
+A special case might be an erodible sediment thickness of 0 (no erodible sediments) covering the entire model domain, though the same result could likely be achieved by updating *params.txt* with:
+*   `morphology   = 0`
+*   `sedtrans     = 0`
+
+![non-erodible layer plot](/images/nonerodible.png)
