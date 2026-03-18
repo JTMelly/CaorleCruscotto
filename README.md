@@ -1,13 +1,34 @@
 # CaorleCruscotto
-Make XBeach models with Python.
+### Make XBeach models with Python.
+
+This collection of scripts attempts to mimic some of the functionality of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the `bed.dep` depth grid dimensions. Inspired by [xbeach-toolbox](https://github.com/openearth/xbeach-toolbox) and [Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repositories.
+
+Tools should work as *Jupyter Notebooks* or in *Colabs* with limited tinkering. Blocks of code are organized into interactive chunks because we debug in production. 
+
+REMEBER TO ALWAYS USE RASTERS IN WELL-DEFINED UTM COORDINATES OR RISK DISASTER! 
 
 ## Make grid and bathymetry
-`MakeGridAndBathy.py` takes a raster file containing elevation(depth) information and interpolates to a user-defined grid, outputting the .bed and .dep files that XBeach will look for to run. With [*rasterio*](https://github.com/rasterio/rasterio) and [*scipy*](https://github.com/scipy/scipy) under the hood, so far it has worked starting from .tif and .asc files. 
+Bring your own bathymetry. `MakeGridAndBathy.py` takes a raster file containing elevation (depth) information and interpolates to a user-defined grid, outputting the *.grd* and *.dep* files that XBeach will look for to run. With [rasterio](https://github.com/rasterio/rasterio) and [scipy](https://github.com/scipy/scipy) under the hood, so far it has worked starting from .tif and .asc files.
 
-To use the generated files, update *params.txt* with:
+To use the resultant files, update *params.txt* with:
 
 *   `xfile        = x.grd`
 *   `yfile        = y.grd`
 *   `depfile      = bed.dep`
 
-Also set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-shore and `ny` is always alongshore).
+Also remember to set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-shore and `ny` is always alongshore).
+
+![wave angle plot](/images/grid.png)![wave angle plot](/images/bathy.png)
+
+## Extend grid and bathymetry
+Feed `ExtendGridAndBathy.py` *.grd* and *dep* files and get back new, extended *.grd* and *.dep* files that reach an offshore target depth by applying a user-defined slope. 
+
+Again, to use the resultant files, update *params.txt* with:
+
+*   `xfile        = x_extended.grd`
+*   `yfile        = y_extended.grd`
+*   `depfile      = bed_extended.dep`
+
+and set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-shore and `ny` is always alongshore).
+
+![wave angle plot](/images/extendedgrid.png)![wave angle plot](/images/extendedbathy.png)
