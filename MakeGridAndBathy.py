@@ -4,22 +4,17 @@ Create XBeach .grd and .dep files from bathymetry raster.
 """
 
 # %% imports
-import sys
 import os
 import pandas as pd
 import numpy as np
 import rasterio
-from rasterio.crs import CRS
-from scipy import interpolate
 from scipy.interpolate import RegularGridInterpolator
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import axes3d, Axes3D
-from matplotlib import cm
 
 
 # %% set paths
 path = '/path_to_working_directory/'
-depfile = 'BathymetryRaster.tif'
+depfile = 'BathymetryFile.tif'
 os.chdir(path)
 
 
@@ -231,4 +226,4 @@ plt.show()
 np.savetxt('x.grd', E_world, fmt='%.4f')
 np.savetxt('y.grd', N_world, fmt='%.4f')
 np.savetxt('bed.dep', Z_world, fmt='%.4f')
-print(f".grd and .dep files saved to {path}")
+print(f".grd and .dep files saved to {path}.")
