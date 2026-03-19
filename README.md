@@ -46,7 +46,7 @@ and set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is always cross-
 ## Make non-erodible layer
 Make a non-erodible layer file, based on an *XBeach* model's *.grd* and *.dep* files, using `MakeNonErodible.py`. Two cases are possible:
 1.  A single erodible sediment thickness value is applied to the entire model domain.
-2.  Erodible/non-erodible areas are defined by a user-provided .geojson file and erodible areas are assigned a sediment thickness value based on user input.
+2.  Erodible/non-erodible areas are defined by a user-provided *.geojson* file and erodible areas are assigned a sediment thickness value based on user input.
 
 To use the *ne_layer.dep* file produced, update *params.txt* with:
 *   `ne_layer     = ne_layer.dep`
@@ -60,7 +60,7 @@ A special case might be an erodible sediment thickness of 0 (no erodible sedimen
 ![non-erodible layer plot](/images/nonerodible.png)
 
 ## Make Manning layer
-`MakeManning.py` makes a *.dep* file containing [Manning coefficients](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) for each model grid node, shaped after an *XBeach* model's *.grd* and *.dep* files. Users must supply a .geojson file comprised of area polygons and an attribute field titled "manning" containing the number values.
+`MakeManning.py` makes a *.dep* file containing [Manning coefficients](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) for each model grid node, shaped after an *XBeach* model's *.grd* and *.dep* files. Users must supply a *.geojson* file comprised of area polygons and an attribute field titled "manning" containing the number values.
 
 To use the output file, update *params.txt* with:
 *   `bedfriction = manning`
