@@ -5,7 +5,7 @@
 
 This collection of scripts attempts to mimic some of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools functionality. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the *bed.dep* depth grid dimensions. Inspired by [Alerovere's Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repository and [OpenEarth's xbeach-toolbox](https://github.com/openearth/xbeach-toolbox).
 
-Tools should work as *Jupyter Notebooks* or in *Colabs* with limited tinkering. Blocks of code are organized into interactive chunks because we debug in production. [Conda-forge](https://conda-forge.org/) seems like a good option for a package manager and some key packages needed include:
+Tools should work as *Jupyter Notebooks* or in *Colabs* with limited tinkering. Blocks of code are organized into interactive chunks because we debug in production. [Conda-forge](https://conda-forge.org/) seems like a good option for managing packages and some required modules include:
 
 *  `geopandas`
 *  `matplotlib` 
