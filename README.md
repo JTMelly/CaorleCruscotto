@@ -18,7 +18,7 @@ Tools should work as *Jupyter Notebooks* or in *Colabs* with limited tinkering. 
 REMEBER TO ALWAYS USE RASTERS IN WELL-DEFINED UTM COORDINATES OR RISK DISASTER! 
 
 ## Make grid and bathymetry
-Bring your own bathymetry. `MakeGridAndBathy.py` takes a raster file containing elevation (depth) information and interpolates to a user-defined grid, outputting the *.grd* and *.dep* files that XBeach will look for to run. With [rasterio](https://github.com/rasterio/rasterio) and [scipy](https://github.com/scipy/scipy) under the hood, so far it has worked starting from .tif and .asc files.
+Bring your own bathymetry. `MakeGridAndBathy.py` takes a raster file containing elevation (depth) information and interpolates to a user-defined grid, outputting the *.grd* and *.dep* files that *XBeach* will look for to run. With [rasterio](https://github.com/rasterio/rasterio) and [scipy](https://github.com/scipy/scipy) under the hood, so far it has worked starting from *.tif* and *.asc* files.
 
 To use the resultant files, update *params.txt* with:
 
