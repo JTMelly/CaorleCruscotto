@@ -3,7 +3,7 @@
 
 ![cruscotto](/images/cruscotto.png)
 
-This collection of scripts attempts to mimic some of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools functionality. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the *bed.dep* depth grid dimensions. Inspired by [Alerovere's Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repository and [OpenEarth's xbeach-toolbox](https://github.com/openearth/xbeach-toolbox).
+This collection of scripts attempts to mimic some of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools functionality. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the *bed.dep* depth grid dimensions. For less typical cases such as comparing and interacting with many model outputs, try [XBeach-utils](https://github.com/JTMelly/XBeach-utils). Inspired by [Alerovere's Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repository and [OpenEarth's xbeach-toolbox](https://github.com/openearth/xbeach-toolbox).
 
 Tools should work as *Jupyter Notebooks* or in *Colabs* with limited tinkering. Blocks of code are organized into interactive chunks because we debug in production. [Conda-forge](https://conda-forge.org/) seems like a good option for managing packages and some required modules include:
 
@@ -70,7 +70,7 @@ To use the output file, update *params.txt* with:
 
 ## Make waves
 
-`MakeWaves.py` makes a single *jonswap* file based on a table of wave statistic observations. These observations likely come from downloaded data and should include wave height, period and direction along with timestamps. Assumes some pre-processing of downloaded data has already occurred (for example, extracting time series data from a single point or condensing an area of interest into a virtual buoy) and data have been saved as a .csv file. Might be useful for creating a single model based on a historical event.
+`MakeWaves.py` makes a single *JONSWAP* file based on a table of wave statistic observations. These observations likely come from downloaded data and should include wave height, period and direction along with timestamps. Assumes some pre-processing of downloaded data has already occurred (for example, extracting time series data from a single point or condensing an area of interest into a virtual buoy) and data have been saved as a .csv file. Might be useful for creating a single model based on a historical event.
 
 ## Make tides
 Take a tide table and hammer it into a format that XBeach likes. Tide files may come from other tools such as [Coastsat](https://github.com/kvos/CoastSat), [PyFES](https://github.com/CNES/aviso-fes), or [pyTMD](https://github.com/pyTMD/pyTMD). Time series data should be saved in a .csv file. Here, two cases are covered: 
