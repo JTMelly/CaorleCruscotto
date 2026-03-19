@@ -1,9 +1,19 @@
 # CaorleCruscotto
 ### Make XBeach models with Python.
 
-This collection of scripts attempts to mimic some of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools functionality. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the *bed.dep* depth grid dimensions. Inspired by [xbeach-toolbox](https://github.com/openearth/xbeach-toolbox) and [Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repositories.
+![cruscotto](/images/cruscotto.png)
 
-Tools should work as *Jupyter Notebooks* or in *Colabs* with limited tinkering. Blocks of code are organized into interactive chunks because we debug in production. 
+This collection of scripts attempts to mimic some of [Delft Dashboard's](https://doi.org/10.2166/hydro.2020.092) *XBeach bathymetry* and *model maker* tools functionality. A use case might involve creating model bathymetry from a gridded elevation (depth) raster file, extending model bathymetry offshore past depth of closure (if needed), and creating non-erodible and [Manning coefficient](https://www.fsl.orst.edu/geowater/FX3/help/8_Hydraulic_Reference/Mannings_n_Tables.htm) grids matching the *bed.dep* depth grid dimensions. Inspired by [Alerovere's Coastal Hydrodynamics](https://github.com/Alerovere/CoastalHydrodynamics) repository and [OpenEarth's xbeach-toolbox](https://github.com/openearth/xbeach-toolbox).
+
+Tools should work as *Jupyter Notebooks* or in *Colabs* with limited tinkering. Blocks of code are organized into interactive chunks because we debug in production. [Conda-forge](https://conda-forge.org/) seems like a good option for a package manager and some key packages needed include:
+
+*  `geopandas`
+*  `matplotlib` 
+*  `numpy`
+*  `pandas`
+*  `rasterio`
+*  `scipy`
+*  `shapely`
 
 REMEBER TO ALWAYS USE RASTERS IN WELL-DEFINED UTM COORDINATES OR RISK DISASTER! 
 
@@ -21,7 +31,7 @@ Also remember to set `nx = _` and `ny = _` in *params.txt* accordingly (`nx` is 
 ![grid plot](/images/grid.png)
 
 ## Extend grid and bathymetry
-Feed `ExtendGridAndBathy.py` *.grd* and *.dep* files and get back new, extended *.grd* and *.dep* files that reach an offshore target depth by applying a user-defined slope. 
+Feed `ExtendGridAndBathy.py` some *.grd* and *.dep* files and get back new, extended *.grd* and *.dep* files that reach an offshore target depth by applying a user-defined slope. 
 
 Again, to use the resultant files, update *params.txt* with:
 
@@ -60,10 +70,10 @@ To use the output file, update *params.txt* with:
 
 ## Make waves
 
-`MakeWaves.py` makes a single *jonswap* file based on a table of satellite altimetry observations. Observations likely come from downloaded data and should include wave height, period and direction along with timestamps. Might be useful for creating a single model based on a historical event.
+`MakeWaves.py` makes a single *jonswap* file based on a table of wave statistic observations. These observations likely come from downloaded data and should include wave height, period and direction along with timestamps. Assumes some pre-processing of downloaded data has already occurred (for example, extracting time series data from a single point or condensing an area of interest into a virtual buoy) and data have been saved as a .csv file. Might be useful for creating a single model based on a historical event.
 
 ## Make tides
-Take a tide table and hammer it into a format that XBeach likes. Tide files may come from other tools such as [Coastsat](https://github.com/kvos/CoastSat), [PyFES](https://github.com/CNES/aviso-fes), or [pyTMD](https://github.com/pyTMD/pyTMD). Here, two cases are covered: 
+Take a tide table and hammer it into a format that XBeach likes. Tide files may come from other tools such as [Coastsat](https://github.com/kvos/CoastSat), [PyFES](https://github.com/CNES/aviso-fes), or [pyTMD](https://github.com/pyTMD/pyTMD). Time series data should be saved in a .csv file. Here, two cases are covered: 
 1) simple tide rises and falls evenly across the offshore boundary; 
 2) offshore boundary corners out of phase inducing longshore currents (assumes rectangular domain).
 
